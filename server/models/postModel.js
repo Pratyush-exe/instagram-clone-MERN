@@ -3,7 +3,10 @@ import mongoose from 'mongoose'
 const postSchema = mongoose.Schema({
     creator: String,
     location: String,
-    selectedFile: String,
+    selectedFile: {
+        type: [String],
+        default: []
+    },
     caption: String,
     tags: [String],
     createAt: {
