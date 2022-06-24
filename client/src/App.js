@@ -1,10 +1,10 @@
 import React from "react";
-import CreatePost from "./Components/CreatePost/CreatePost";
+import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <CreatePost />
+      <NavBar />
     </div>
   );
 }
