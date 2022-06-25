@@ -1,0 +1,75 @@
+.post-main-component {
+    background-color: white;
+    width: 500px;
+    height: auto;
+    border: 1px lightgray solid;
+    border-radius: 10px;
+}
+
+.post-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: aqua;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.post-user-loc-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-user {
+    margin: 0px;
+}
+
+.post-user-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-user-loc-name {
+    margin-left: 10px;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.5);
+    }
+    
+    50% {
+        transform: scale(1);
+    }
+    
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-heart {
+    color: red;
+    animation: heartbeat 0.5s 1;
+}
+
+.post-action-bts {
+    width: 25px;
+    height: 25px;
+    margin: 0px 5px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
