@@ -19,10 +19,15 @@ function PostsMain() {
     }, [])
 
     return (
-    <div className='posts-container'>
-        {Data && Data.map((data)=>(
-            <Post PostData={data} />
-        ))}
+    <div className='main-posts-container'>
+        <div className='posts-container'>
+            {Data && Data.map((data)=>(
+                <Post PostData={data} />
+            ))}
+        </div>
+        <div style={{width: "350px", height: "100px", backgroundColor: "gray", borderRadius: "10px", marginTop: "10px"}}>
+            Suggestions
+        </div>
     </div>
     )
 }
