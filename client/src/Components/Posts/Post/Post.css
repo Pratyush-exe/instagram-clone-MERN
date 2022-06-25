@@ -65,11 +65,34 @@
 .post-action-bts {
     width: 25px;
     height: 25px;
-    margin: 0px 5px;
+    margin: 0px 10px;
+    cursor: pointer;
 }
 
 .post-actions {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    align-items: center;
+}
+
+.post-user-img {
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+.post-action-bts:hover {
+    color: gray;
+}
+
+.post-likes {
+    padding: 0px 20px;
+    font-weight: 700;
+    margin-top: 0px;
+}
+
+.post-caption {
+    padding: 0px 20px;
+    margin-top: 0px;
 }
