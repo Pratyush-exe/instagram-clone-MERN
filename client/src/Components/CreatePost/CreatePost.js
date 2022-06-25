@@ -13,8 +13,8 @@ function CreatePost({trigger, setTrigger}) {
     })
 
     async function handleSubmit(e) {
-        setTrigger(false)
         await API.post('/posts' , postData)
+        setTrigger(false)
     }
 
     return ( trigger ? (
@@ -29,7 +29,7 @@ function CreatePost({trigger, setTrigger}) {
                         onChange={(e)=>setPostData({ ...postData, creator: e.target.value })} />
                     <input className='input' type={"text"} placeholder="location" id="location" 
                         onChange={(e)=>setPostData({ ...postData, location: e.target.value })} />
-                    <input className='input' type={"text"} placeholder="caption" id="caption" 
+                    <textarea className='input' type={"text"} placeholder="caption" id="caption" 
                         onChange={(e)=>setPostData({ ...postData, caption: e.target.value })} />
                     <div className="input" >
                         <FileBase type="file" multiple={false}

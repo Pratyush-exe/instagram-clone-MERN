@@ -1,27 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import './Post.css'
-import axios from 'axios'
 import {BsThreeDots, BsHeart, BsHeartFill} from 'react-icons/bs'
 import {TbMessageCircle2} from 'react-icons/tb'
 import {IoPaperPlaneOutline} from 'react-icons/io5'
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+function Post({PostData}) {
 
-function Post({}) {
-
-  const [PostData, setPostData] = useState({})
   const [IsClick, setIsClick] = useState(false)
-  
-  useEffect(() => {
-    const getPost = async () => {
-      const user = await API.get('/posts')
-      setPostData(user.data[0])
-      console.log(user)
-    }
-
-    getPost()
-  }, [])
-  
 
   return (
     <div className='post-main-component' >
@@ -38,8 +23,8 @@ function Post({}) {
       <img className='post-user-img' src={PostData["selectedFile"][0]} ></img>
       <div className='post-actions'>
         <div className='post-not-save'>
-          {IsClick && <BsHeart onClick={()=>setIsClick(!IsClick)} style={{fontSize: "25px", margin: "0px 10px"}}/>}
-          {!IsClick && <BsHeartFill className='animate-heart' onClick={()=>{setIsClick(!IsClick)}} style={{fontSize: "25px", margin: "0px 10px"}}/>}
+          {!IsClick && <BsHeart onClick={()=>setIsClick(!IsClick)} style={{fontSize: "25px", margin: "0px 10px"}}/>}
+          {IsClick && <BsHeartFill className='animate-heart' onClick={()=>{setIsClick(!IsClick)}} style={{fontSize: "25px", margin: "0px 10px"}}/>}
           <TbMessageCircle2 style={{transform: "rotateY(180deg)"}} className='post-action-bts' />
           <IoPaperPlaneOutline className='post-action-bts' />
         </div>
