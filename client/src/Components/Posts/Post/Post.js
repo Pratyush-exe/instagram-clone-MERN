@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './Post.css'
-import {BsThreeDots, BsHeart, BsHeartFill} from 'react-icons/bs'
-import {TbMessageCircle2} from 'react-icons/tb'
-import {IoPaperPlaneOutline} from 'react-icons/io5'
+import { LoveOutline, LoveFilled, Comment, Share, SaveFilled, SaveOutline, ThreeDots } from '../../../images/svg'
 
 function Post({PostData}) {
 
@@ -18,19 +16,17 @@ function Post({PostData}) {
             <p className='post-user'>{PostData["location"]}</p>
           </div>
         </div>
-        <BsThreeDots />
+        <ThreeDots />
       </div>
       <img className='post-user-img' src={PostData["selectedFile"][0]} ></img>
       <div className='post-actions'>
         <div className='post-not-save'>
-          {!IsClick && <BsHeart onClick={()=>setIsClick(!IsClick)} style={{fontSize: "25px", margin: "0px 10px"}}/>}
-          {IsClick && <BsHeartFill className='animate-heart' onClick={()=>{setIsClick(!IsClick)}} style={{fontSize: "25px", margin: "0px 10px"}}/>}
-          <TbMessageCircle2 style={{transform: "rotateY(180deg)"}} className='post-action-bts' />
-          <IoPaperPlaneOutline className='post-action-bts' />
+          {!IsClick && <div onClick={()=>setIsClick(!IsClick)} style={{fontSize: "25px", margin: "0px 10px"}}><LoveOutline /></div>}
+          {IsClick && <div className='animate-heart' onClick={()=>{setIsClick(!IsClick)}} style={{fontSize: "25px", margin: "0px 10px"}}><LoveFilled /></div>}
+          <div className='post-action-bts' ><Comment /></div>
+          <div className='post-action-bts' ><Share /></div>
         </div>
-        <div className='post-action-bts'>
-          <svg color="black" fill="black" role="img" viewBox="0 0 30 30"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg>
-        </div>
+        <div className='post-action-bts' ><SaveOutline /></div>
       </div>
       <p className='post-likes'>{PostData["likes"].length} likes </p>
       <p className='post-caption'><strong>{PostData["creator"]} </strong>{PostData["caption"]}</p>

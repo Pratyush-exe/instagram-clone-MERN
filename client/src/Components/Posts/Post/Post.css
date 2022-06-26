@@ -97,3 +97,8 @@
     padding: 0px 20px;
     margin-top: 0px;
 }
+
+.post-not-save {
+    display: flex;
+    flex-direction: row;
+}
