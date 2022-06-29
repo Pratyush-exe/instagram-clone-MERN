@@ -5,7 +5,6 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    pointer-events: all;
 }
 
 .create-post-file-container {
@@ -15,5 +14,4 @@
     height: 100%;
     width: 100%;
     justify-content: center;
-    pointer-events:none
 }

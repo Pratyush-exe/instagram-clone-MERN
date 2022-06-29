@@ -21,8 +21,8 @@ function PostsMain() {
     return (
     <div className='main-posts-container'>
         <div className='posts-container'>
-            {Data && Data.map((data)=>(
-                <Post PostData={data} />
+            {Data && Data.map((data, i)=>(
+                <Post key={i} PostData={data} />
             ))}
         </div>
         <div style={{width: "350px", height: "100px", backgroundColor: "gray", borderRadius: "10px", marginTop: "10px"}}>
