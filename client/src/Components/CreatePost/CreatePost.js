@@ -3,14 +3,17 @@ import FileBase from 'react-file-base64'
 import "./CreatePost.css"
 import axios from 'axios'
 import {MdOutlineClose} from 'react-icons/md'
+import AddImage from './AddImage/AddImage'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
 
 function CreatePost({trigger, setTrigger}) {
+    const [page, setPage] = useState(0)
     const [postData, setPostData] = useState({
         creator: "", location: "", selectedFile: [], caption: "",
         tags: [], createAt: "", comments: [], likes: []
     })
+    const titles = ["Create new post", "Crop", "Edit", "Create new post"]
 
     async function handleSubmit(e) {
         await API.post('/posts' , postData)
@@ -21,22 +24,13 @@ function CreatePost({trigger, setTrigger}) {
     <div className='creat-post-bg'>
         <MdOutlineClose className='cross-bt' onClick={()=>setTrigger(false)} />
         <div className='creat-post'>
-            <div className='create-post-head'>Create Post</div>
+            <div className='create-post-head'>{titles[page]}</div>
             <hr/>
-            <div className='create-post-body'>
-                <form id="form-create-post">
-                    <input className='input' type={"text"} placeholder="creator" id="creator" 
-                        onChange={(e)=>setPostData({ ...postData, creator: e.target.value })} />
-                    <input className='input' type={"text"} placeholder="location" id="location" 
-                        onChange={(e)=>setPostData({ ...postData, location: e.target.value })} />
-                    <textarea className='input' type={"text"} placeholder="caption" id="caption" 
-                        onChange={(e)=>setPostData({ ...postData, caption: e.target.value })} />
-                    <div className="input" >
-                        <FileBase type="file" multiple={false}
-                            onDone={({base64}) => setPostData({...postData, selectedFile: [base64]})} />
-                    </div>
-                    <button className='input' onClick={handleSubmit}>Submit</button>
-                </form>
+            <div className='create-post-action-container'>
+                {page===0 && <AddImage page={page} setPage={setPage} postData={postData}/>}
+                {page===1 && <AddImage page={page} setPage={setPage} postData={postData}/>}
+                {page===2 && <AddImage page={page} setPage={setPage} postData={postData}/>}
+                {page===3 && <AddImage page={page} setPage={setPage} postData={postData}/>}
             </div>
         </div>
     </div>

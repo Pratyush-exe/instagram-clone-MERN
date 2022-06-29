@@ -20,3 +20,8 @@
     margin-right: 10px;
     cursor: pointer;
 }
+
+.navbar-options {
+    display: flex;
+    flex-direction: row;
+}

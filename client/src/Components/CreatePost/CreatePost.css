@@ -34,7 +34,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: 600px;
 }
 
 .create-post-body {
@@ -52,4 +53,16 @@
     margin-left: 30px;
     margin-right: 30px;
     padding-left: 10px;
+}
+
+.create-post-action-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    position: relative;
+}
+
+hr {
+    margin: 0px;
 }
