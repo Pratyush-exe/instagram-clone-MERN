@@ -1,0 +1,54 @@
+.edit-cont {
+    position: relative;
+    height: 100%;
+    display: flex;
+}
+
+.edit-image-cont {
+    height: 100%;
+    width: 500px;
+    overflow: hidden;
+}
+
+.edit-filter-cont {
+    height: 100%;
+    width: 400px;
+    overflow-y: scroll;
+}
+
+.edit-heading-cont {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+}
+
+.bt-edit-image {
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: auto;
+    height: 5px; 
+    background: #d3d3d3;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: rgb(38, 38, 38);
+    cursor: pointer;
+  }

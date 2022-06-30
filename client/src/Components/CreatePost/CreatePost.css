@@ -1,4 +1,4 @@
-.creat-post-bg {
+.create-post-bg {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
@@ -21,10 +21,10 @@
     cursor: pointer;
 }
 
-.creat-post {
+.create-post {
     height: 600px;
     background-color: white;
-    width: 500px;
+    width: auto;
     border-radius: 20px;
     position: relative;
 }
