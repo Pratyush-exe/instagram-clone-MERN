@@ -35,20 +35,55 @@ function EditImage() {
             {!isFilter && (
               <div className='adjust-cont'>
                 <div className='slider-cont'>
-                  <p className='slider-head'>Brightness</p>
-                  <input type="range" min="-100" max="100" className='slider' id="brightness" value={brightness} onChange={(e)=>{setbrightness(e.target.value)}} ></input></div>
+                  <div className='slider-val-1'>
+                    <p className='slider-head'>Brightness</p>
+                    <h3 className='reset-bt' onClick={()=>setbrightness(0)}>Reset</h3>
+                  </div>
+                  <div className='slider-val-2'>
+                    <input type="range" min="-100" max="100" className='slider' id="brightness" value={brightness} onChange={(e)=>{setbrightness(e.target.value)}} ></input>
+                    <p className='slider-val-count'>{brightness}</p>
+                  </div>
+                </div>
                 <div className='slider-cont'>
-                  <p className='slider-head'>Contrast</p>
-                  <input type="range" min="-100" max="100" className='slider' id="contrast" value={contrast} onChange={(e)=>{setcontrast(e.target.value)}} ></input></div>
+                  <div className='slider-val-1'>
+                    <p className='slider-head'>Contrast</p>
+                    <h3 className='reset-bt' onClick={()=>setcontrast(0)}>Reset</h3>
+                  </div>
+                  <div className='slider-val-2'>
+                    <input type="range" min="-100" max="100" className='slider' id="contrast" value={contrast} onChange={(e)=>{setcontrast(e.target.value)}} ></input>
+                    <p className='slider-val-count'>{contrast}</p>
+                  </div>
+                </div>
                 <div className='slider-cont'>
-                  <p className='slider-head'>Saturation</p>
-                  <input type="range" min="-100" max="100" className='slider' id="saturation" value={saturation} onChange={(e)=>{setsaturation(e.target.value)}} ></input></div>
+                  <div className='slider-val-1'>
+                    <p className='slider-head'>Saturation</p>
+                    <h3 className='reset-bt' onClick={()=>setsaturation(0)}>Reset</h3>
+                  </div>
+                  <div className='slider-val-2'>
+                    <input type="range" min="-100" max="100" className='slider' id="saturation" value={saturation} onChange={(e)=>{setsaturation(e.target.value)}} ></input>
+                    <p className='slider-val-count'>{saturation}</p>
+                  </div>
+                </div>
                 <div className='slider-cont'>
-                  <p className='slider-head'>Temperature</p>
-                  <input type="range" min="-100" max="100" className='slider' id="temperature" value={temperature} onChange={(e)=>{settemperature(e.target.value)}} ></input></div>
+                  <div className='slider-val-1'>
+                    <p className='slider-head'>Temperature</p>
+                    <h3 className='reset-bt' onClick={()=>settemperature(0)}>Reset</h3>
+                  </div>
+                  <div className='slider-val-2'>
+                    <input type="range" min="-100" max="100" className='slider' id="temperature" value={temperature} onChange={(e)=>{settemperature(e.target.value)}} ></input>
+                    <p className='slider-val-count'>{temperature}</p>
+                  </div>
+                </div>
                 <div className='slider-cont'>
-                  <p className='slider-head'>Vignette</p>
-                  <input type="range" min="0" max="100" className='slider' id="vignette" value={vignette} onChange={(e)=>{setvignette(e.target.value)}} ></input></div>
+                  <div className='slider-val-1'>
+                    <p className='slider-head'>Vignette</p>
+                    <h3 className='reset-bt' onClick={()=>setvignette(0)}>Reset</h3>
+                  </div>
+                  <div className='slider-val-2'>
+                    <input type="range" min="0" max="100" className='slider' id="vignette" value={vignette} onChange={(e)=>{setvignette(e.target.value)}} ></input>
+                    <p className='slider-val-count'>{vignette}</p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
