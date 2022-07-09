@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Post from './Post/Post'
 import "./PostMain.css"
+import SkeletonPost from './Post/SkeletonPost'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
 
@@ -24,6 +25,10 @@ function PostsMain() {
             {Data && Data.map((data, i)=>(
                 <Post key={i} PostData={data} />
             ))}
+            {!Data && (
+                <><SkeletonPost />
+                <SkeletonPost /></>
+            )}
         </div>
         <div style={{width: "350px", height: "100px", backgroundColor: "gray", borderRadius: "10px", marginTop: "10px"}}>
             Suggestions

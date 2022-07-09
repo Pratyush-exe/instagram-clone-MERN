@@ -1,0 +1,89 @@
+
+
+.post-main-component-skeleton {
+    background-color: white;
+    width: 500px;
+    height: auto;
+    border: 1px lightgray solid;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.post-user-image-skeleton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: lightgray;
+}
+
+.post-header-skeleton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.post-user-loc-name-skeleton {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.post-user-skeleton {
+    margin: 0px;
+    width: 100px;
+    background-color: lightgray;
+    height: 15px;
+    border-radius: 10px;
+}
+
+.post-user-details-skeleton {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-user-loc-name-skeleton {
+    margin-left: 10px;
+}
+
+.post-action-bts-skeleton {
+    width: 25px;
+    height: 25px;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.post-actions-skeleton {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+.post-user-img-skeleton {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    background-color: lightgray;
+}
+
+.post-likes-skeleton {
+    padding: 0px 20px;
+    font-weight: 700;
+    margin-top: 0px;
+}
+
+.post-caption-skeleton {
+    padding: 0px 20px;
+    margin-top: 0px;
+}
+
+.post-not-save-skeleton {
+    display: flex;
+    flex-direction: row;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
