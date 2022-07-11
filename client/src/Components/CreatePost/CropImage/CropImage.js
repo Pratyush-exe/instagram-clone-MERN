@@ -4,23 +4,11 @@ import "./cropperjs.css";
 import "./CropImage.css"
 import img from "C:/Users/KIIT/Downloads/dsdsfgdfsgdf.png"
 
-function CropImage({page, setPage, setPostData, postData}) {
-    const cropperRef = useRef(null);
-    const onCrop = () => {
-      const imageElement = cropperRef?.current;
-      const cropper = imageElement?.cropper;
-      console.log(cropper.getCroppedCanvas().toDataURL());
-    };
-  
+function CropImage({page, setPage, setPostData, postData}) {  
     return (
-      <Cropper
-        src={img}
-        style={{ height: "100%", width: "100%", pointerEvents: "none"}}
-        // initialAspectRatio={1}
-        guides={false}
-        crop={onCrop}
-        ref={cropperRef}
-      />
+      <div className='crop-post-file-container'>
+
+      </div>
     );
 }
 

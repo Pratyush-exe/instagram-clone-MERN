@@ -9,6 +9,7 @@ function AddImage({page, setPage, setPostData, postData}) {
       const reader = new FileReader();
       reader.onload = (event) => {
           console.log(event.target.result);
+          setPostData({...postData, selectedFile: [event.target.result]})
           setPage(page+1)
       };
       reader.readAsDataURL(file);

@@ -5,9 +5,13 @@
 }
 
 .edit-image-cont {
-    height: 100%;
     width: 500px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+    border-right: 1px lightgray solid;
 }
 
 .edit-filter-cont {

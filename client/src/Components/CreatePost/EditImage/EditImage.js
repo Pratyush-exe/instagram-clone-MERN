@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './EditImage.css'
 
-function EditImage() {
+function EditImage({postData}) {
 
   const [isFilter, setisFilter] = useState(true)
   const [brightness, setbrightness] = useState(0)
@@ -13,7 +13,7 @@ function EditImage() {
   return (
     <div className='edit-cont'>
         <div className='edit-image-cont'>
-          <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F13%2F2015%2F04%2F05%2Ffeatured.jpg" />
+          <img src={postData["selectedFile"][0]} style={{objectFit: 'scale-down', height: '100%', width: '100%'}}/>
         </div>
         <div className='edit-filter-cont'>
           <div className='edit-heading-cont'>
