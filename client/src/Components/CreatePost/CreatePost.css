@@ -81,3 +81,18 @@
 hr {
     margin: 0px;
 }
+
+.posted {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.post-loading {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
