@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import FileBase from 'react-file-base64'
 import "./CreatePost.css"
 import axios from 'axios'
 import {MdOutlineClose} from 'react-icons/md'
@@ -41,9 +40,9 @@ function CreatePost({trigger, setTrigger}) {
             </div>
             <hr/>
             <div className='create-post-action-container'>
-                {page===0 && <AddImage page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
-                {page===1 && <CropImage page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
-                {page===2 && <EditImage page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
+                {page===0 && <AddImage   page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
+                {page===1 && <CropImage  page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
+                {page===2 && <EditImage  page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
                 {page===3 && <AddCaption page={page} setPage={setPage} setPostData={setPostData} postData={postData}/>}
                 {page===4 && <div className='post-loading' >
                         <img src='https://static.cdninstagram.com/rsrc.php/v3/yA/r/34QF6MIeoYt.gif'></img>

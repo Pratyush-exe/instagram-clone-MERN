@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './AddCaption.css'
-import { Location } from '../../../images/svg'
+import { Location, UpArrow } from '../../../images/svg'
 
-function AddCaption({postData, setpostData}) {
+function AddCaption({postData, setPostData}) {
+
+    const [accessibility, setAccessibility] = useState(false)
+    const [advanced, setAdvanced] = useState(false)
+
   return (
     <div className='caption-cont'>
         <div className='caption-image-cont'>
@@ -15,32 +19,45 @@ function AddCaption({postData, setpostData}) {
                 <div style={{marginLeft: '20px'}}>patnaik</div>
             </div>
             <div className='caption-caption-cont'>
-                <textarea placeholder='Write a caption...' className='caption-text-area'></textarea>
+                <textarea placeholder='Write a caption...' className='caption-text-area'
+                    onChange={(e) => setPostData({...postData, caption: e.target.value})}
+                ></textarea>
                 <div className='icons-words-caption'>
                     
                 </div>
             </div>
+            <hr />
             <div className='caption-location-cont caption-sizing'>
-                <input type={"text"} className='caption-location-input' placeholder='Add location'/>
+                <input type={"text"} className='caption-location-input' placeholder='Add location' onChange={ (e)=>{
+                    setPostData({...postData, location:e.target.value})
+                }}/>
                 <div className='location-icon'><Location /></div>
             </div>
-            <div className='caption-accessibility-cont caption-sizing'>
+            <hr />
+            <div className='caption-accessibility-cont'>
                 {/* not functional */}
-                <div className='caption-accessibility-head'>
+                <div className='caption-accessibility-head caption-sizing' onClick={()=>setAccessibility(!accessibility)}>
+                    <h3 style={{width: "300px", fontSize: "15px", margin: "10px"}}>Accessibility</h3>
+                    <div className={`location-icon ${accessibility ? "upside" : "downside"}`}> <UpArrow /> </div>
                 </div>
-                <div className='caption-accessibility-body'>
-
-                </div>
+                {accessibility && <div className='caption-accessibility-body'>
+                </div>}
             </div>
-            <div className='caption-advanced-cont caption-sizing'>
+            <hr />
+            <div className='caption-advanced-cont'>
                 {/* not functional */}
-                <div className='caption-advanced-head'>
-
+                <div className='caption-advanced-head caption-sizing' onClick = {()=>setAdvanced(!advanced)}>
+                    <h3 style={{width: "300px", fontSize: "15px", margin: "10px"}}>Advanced settings</h3>
+                    <div 
+                        className={`location-icon ${advanced ? "upside" : "downside"}`}
+                    > <UpArrow />
+                    </div>
                 </div>
-                <div className='caption-advanced-body'>
+                {advanced && <div className='caption-advanced-body'>
 
-                </div>
+                </div>}
             </div>
+            <hr />
         </div>
     </div>
   )

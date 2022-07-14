@@ -17,7 +17,7 @@
 .caption-control-cont {
     height: 100%;
     width: 400px;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .caption-heading-cont {
@@ -132,7 +132,7 @@
 .caption-sizing {
     height: 50px;
     margin: 1px;
-    background-color: aqua;
+    background-color: white;
     display: flex;
     justify-content: space-between;
 }
@@ -152,4 +152,30 @@
     display: flex;
     align-items: center;
     margin-right: 20px;
+}
+
+.caption-advanced-head {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.caption-advanced-body {
+    height: 200px;
+    background-color: cadetblue;
+    /* display: none; */
+}
+
+.caption-accessibility-body {
+    height: 200px;
+    background-color: cadetblue;
+    /* display: none; */
+}
+
+.upside {
+    transform: rotate(0deg);
+}
+
+.downside {
+    transform: rotate(180deg);
 }
