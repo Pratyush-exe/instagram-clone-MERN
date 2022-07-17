@@ -1,7 +1,7 @@
 import React from 'react'
 import './SignIn.css'
 
-function SignIn() {
+function SignIn({isSignUp, setSignUp}) {
   return (
     <div className='creds-form-signup-cont'>
         <div className='creds-form-signup'>
@@ -14,11 +14,10 @@ function SignIn() {
             <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>People who use our service may have uploaded your contact information to Instagram. 
                 <p style={{fontWeight: 'bold'}}>Learn More</p>
             </p>
-
             <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
-            <p>Don't have an account?</p><p className='login-bt'>Sign Up</p>
+            <p>Don't have an account?</p><p className='login-bt' onClick={()=>setSignUp(true)}>Sign Up</p>
         </div>
     </div>
   )

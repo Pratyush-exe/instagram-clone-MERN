@@ -1,7 +1,7 @@
 import React from 'react'
 import './SignUp.css'
 
-function SignUp() {
+function SignUp({isSignUp, setSignUp}) {
   return (
     <div className='creds-form-signup-cont'>
         <div className='creds-form-signup'>
@@ -12,7 +12,7 @@ function SignUp() {
             </div>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
-            <p>Have an account?</p><p className='login-bt'>Log in</p>
+            <p>Have an account?</p><p className='login-bt' onClick={()=>setSignUp(false)}>Log in</p>
         </div>
     </div>
   )
