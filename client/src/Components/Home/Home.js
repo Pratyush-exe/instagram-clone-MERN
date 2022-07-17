@@ -8,8 +8,8 @@ function Home() {
     <div className='home-creds'>
         <div className='creds-content'>
             <img src="https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png" />
-            {/* <SignUp /> */}
-            <SignIn />
+            <SignUp />
+            {/* <SignIn /> */}
         </div>
         <div className='creds-footer'>
             <div className='footer'>
