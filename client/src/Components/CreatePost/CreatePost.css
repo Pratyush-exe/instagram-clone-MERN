@@ -42,6 +42,7 @@
     width: auto;
     border-radius: 20px;
     position: relative;
+    overflow: hidden;
 }
 
 .create-post-head {
