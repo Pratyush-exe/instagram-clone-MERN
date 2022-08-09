@@ -16,6 +16,3 @@ function App() {
 }
 
 export default App;
-
-// client id: 704008085485-io3a15e381sntsf28dcf5nv4rel6qnoe.apps.googleusercontent.com
-// client secret: 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
