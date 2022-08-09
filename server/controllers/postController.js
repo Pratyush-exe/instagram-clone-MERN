@@ -1,4 +1,5 @@
 import PostModel from "../models/postModel.js"
+import UserModel from "../models/userModel.js"
 
 export const getPosts = async (req, res) => {
     try {
@@ -24,4 +25,8 @@ export const createPost = async (req, res) => {
     } catch (error) {
         res.status(409).json({message: error.message})
     }
+}
+
+export const getUser = async (req, res) => {
+    
 }
