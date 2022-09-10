@@ -1,36 +1,60 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './SignIn.css'
+import jwt_decode from 'jwt-decode'
 
 function handleSignIn(e) {
     let in1 = document.getElementById('fullname')
     let in2 = document.getElementById('username')
 
-    if (in1.value == "" || in2.value == "") {
-        alert("Fields are empty !")
+    if (in1.value == "") alert("username is empty !")
+    else if (in2.value == "") alert("password is empty !")
+    else {
+        
     }
 }
 
+function handleCallback(response) {
+    console.log(response)
+    console.log(jwt_decode(response["credential"]))
+}
+
 function SignIn({isSignUp, setSignUp}) {
-  return (
-    <div className='creds-form-signup-cont'>
-        <div className='creds-form-signup'>
-            <img style={{paddingBottom: '5px'}} src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
-            <p style={{textAlign: 'center', fontSize: '18px', padding: '10px', paddingBottom: '20px'}}>Sign up to see photos and videos from your friends.</p>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                <input id="fullname" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Full name' />
-                <input id="username" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Username' />
-                <button onClick={handleSignIn} style={{width: '310px' , height: '30px', marginBottom: '5px'}}>SignIn with Google</button>
+
+    useEffect(() => {
+        /*global google*/ 
+        google.accounts.id.initialize({
+            client_id: process.env.REACT_APP_CLIENT_ID,
+            callback: handleCallback
+        })
+    
+        google.accounts.id.renderButton(
+            document.getElementById("Signup_button"),
+            {theme: "outline", size: "medium", text: "signup_with"}
+        )
+    }, [])
+
+    return (
+        <div className='creds-form-signup-cont'>
+            <div className='creds-form-signup'>
+                <img style={{paddingBottom: '5px'}} src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
+                <p style={{textAlign: 'center', fontSize: '18px', padding: '10px', paddingBottom: '20px'}}>Sign up to see photos and videos from your friends.</p>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <input id="fullname" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Full name' />
+                    <input id="username" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Username' />
+                    <input id="password" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Create password' />
+                    {/* <button onClick={handleSignIn} style={{width: '310px' , height: '30px', marginBottom: '5px'}}>SignIn with Google</button> */}
+                    <div id='Signup_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
+                </div>
+                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>People who use our service may have uploaded your contact information to Instagram. 
+                    <p style={{fontWeight: 'bold'}}>Learn More</p>
+                </p>
+                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
             </div>
-            <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>People who use our service may have uploaded your contact information to Instagram. 
-                <p style={{fontWeight: 'bold'}}>Learn More</p>
-            </p>
-            <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+            <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
+                <p>Have an account?</p><p className='login-bt' onClick={()=>setSignUp(true)}>Log in</p>
+            </div>
         </div>
-        <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
-            <p>Have an account?</p><p className='login-bt' onClick={()=>setSignUp(true)}>Log in</p>
-        </div>
-    </div>
-  )
+    )
 }
 
 export default SignIn

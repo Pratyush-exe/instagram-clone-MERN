@@ -1,5 +1,4 @@
 import PostModel from "../models/postModel.js"
-import UserModel from "../models/userModel.js"
 
 export const getPosts = async (req, res) => {
     try {

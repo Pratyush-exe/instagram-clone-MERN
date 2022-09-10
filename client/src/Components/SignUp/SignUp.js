@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import './SignUp.css'
 import jwt_decode from 'jwt-decode'
+import { Outlet, Link } from "react-router-dom"
 
-function handleSignUp(e) {
+function handleLoginWup(e) {
     let in1 = document.getElementById('username-signup')
+    let in2 = document.getElementById('password-signup')
 
-    if (in1.value == "") {
-        alert("Fields are empty !")
+    if (in1.value == "") alert("username is empty !")
+    else if (in2.value == "") alert("password is empty !")
+    else {
+        
     }
 }
 
@@ -24,10 +28,8 @@ function SignUp({isSignUp, setSignUp}) {
         })
     
         google.accounts.id.renderButton(
-            document.getElementById("SignUp_button"),
-            {
-                theme: "outline", size: "large"
-            }
+            document.getElementById("Signin_button"),
+            {theme: "outline", size: "medium", text: "signin_with"}
         )
     }, [])
 
@@ -37,10 +39,16 @@ function SignUp({isSignUp, setSignUp}) {
             <img style={{paddingBottom: '20px'}} src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <input id="username-signup" style={{ width: '300px', height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Username' />
-                {/* <button onClick={handleSignUp} style={{ width: '310px', height: '30px', marginBottom: '5px'}}>Login Google</button> */}
-                <div id='SignUp_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
+                <input id="password-signup" style={{ width: '300px', height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Password' />
+                <button onClick={handleLoginWup} style={{ width: '310px', height: '30px', marginBottom: '5px'}}>Login</button>
+                <div style={{display: 'flex', "flexDirection": "row", position: 'relative', "justifyContent": "center", "alignItems": "center", "margin": "0 20px"}}>
+                    <div style={{width: "40%", height: "1px", backgroundColor: "lightgray"}}></div>
+                    <div>or</div>
+                    <div style={{width: "40%", height: "1px", backgroundColor: "lightgray"}}></div>
+                </div>
+                <div id='Signin_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
             </div>
-            <p id="forgot">Forgot username?</p>
+            <p id="forgot">Forgot password?</p>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
             <p>Don't have an account?</p><p className='login-bt' onClick={()=>setSignUp(false)}>Sign Up</p>
