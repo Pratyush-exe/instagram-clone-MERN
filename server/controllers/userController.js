@@ -23,19 +23,20 @@ export const signInUser = async (req, res) => {
 }
 
 export const signUpUser = async (req, res) => {
-    const {clientId, userName, password, name, defaultPicture} = req.body
+    const {clientId, userName, password, name, defaultPicture, email} = req.body
     try {
-        if(clientId !== "none") {
-            const existingUser = await User.findOne({clientId});
-            if(existingUser) return res.status(404).json('user already exist')
-            const result = await User.create({
-                clientId: clientId, 
-                userName: userName, 
-                password: password, 
-                name: name, 
-                defaultPicture: defaultPicture})
-            res.status(200).json({result, token})
-        }
+        const existingUser = await UserModel.findOne({userName});
+        console.log(existingUser)
+        if(existingUser) return res.status(404).json('user already exist')
+        const result = await UserModel.create({
+            clientId: clientId, 
+            userName: userName, 
+            password: password, 
+            name: name, 
+            defaultPicture: defaultPicture,
+            email: email
+        })
+        res.status(200).json({result})
 
     } catch (error) {
         console.log(error)

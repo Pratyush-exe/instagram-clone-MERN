@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import './SignIn.css'
 import jwt_decode from 'jwt-decode'
+import { Outlet, Link } from "react-router-dom"
 
-function handleSignIn(e) {
-    let in1 = document.getElementById('fullname')
-    let in2 = document.getElementById('username')
+function handleLoginWup(e) {
+    let in1 = document.getElementById('username-signup')
+    let in2 = document.getElementById('password-signup')
 
     if (in1.value == "") alert("username is empty !")
     else if (in2.value == "") alert("password is empty !")
@@ -18,8 +19,7 @@ function handleCallback(response) {
     console.log(jwt_decode(response["credential"]))
 }
 
-function SignIn({isSignUp, setSignUp}) {
-
+function SignUp({isSignUp, setSignUp}) {
     useEffect(() => {
         /*global google*/ 
         google.accounts.id.initialize({
@@ -28,33 +28,33 @@ function SignIn({isSignUp, setSignUp}) {
         })
     
         google.accounts.id.renderButton(
-            document.getElementById("Signup_button"),
-            {theme: "outline", size: "medium", text: "signup_with"}
+            document.getElementById("Signin_button"),
+            {theme: "outline", size: "medium", text: "signin_with", width: "312px"}
         )
     }, [])
 
     return (
-        <div className='creds-form-signup-cont'>
-            <div className='creds-form-signup'>
-                <img style={{paddingBottom: '5px'}} src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
-                <p style={{textAlign: 'center', fontSize: '18px', padding: '10px', paddingBottom: '20px'}}>Sign up to see photos and videos from your friends.</p>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <input id="fullname" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Full name' />
-                    <input id="username" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Username' />
-                    <input id="password" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Create password' />
-                    {/* <button onClick={handleSignIn} style={{width: '310px' , height: '30px', marginBottom: '5px'}}>SignIn with Google</button> */}
-                    <div id='Signup_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
+    <div className='creds-form-signup-cont'>
+        <div className='creds-form-signup'>
+            <img style={{paddingBottom: '20px'}} src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+                <input id="username-signup" style={{ width: '300px', height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Username' />
+                <input id="password-signup" style={{ width: '300px', height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Password' />
+                <button onClick={handleLoginWup} style={{ width: '310px', height: '30px', marginBottom: '5px'}}>Login</button>
+                <div style={{display: 'flex', "flexDirection": "row", position: 'relative', "justifyContent": "center", "alignItems": "center", "margin": "0 20px"}}>
+                    <div style={{width: "40%", height: "1px", backgroundColor: "lightgray"}}></div>
+                    <div style={{"fontSize":"small", "margin": "10px 20px"}}>OR</div>
+                    <div style={{width: "40%", height: "1px", backgroundColor: "lightgray"}}></div>
                 </div>
-                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>People who use our service may have uploaded your contact information to Instagram. 
-                    <p style={{fontWeight: 'bold'}}>Learn More</p>
-                </p>
-                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+                <div id='Signin_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
-                <p>Have an account?</p><p className='login-bt' onClick={()=>setSignUp(true)}>Log in</p>
-            </div>
+            <p id="forgot">Forgot password?</p>
         </div>
-    )
+        <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
+            <p>Don't have an account?</p><p className='login-bt' onClick={()=>setSignUp(true)}>Sign Up</p>
+        </div>
+    </div>
+    ) 
 }
 
-export default SignIn
+export default SignUp
