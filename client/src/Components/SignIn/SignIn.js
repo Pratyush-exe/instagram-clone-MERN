@@ -2,21 +2,37 @@ import React, { useEffect } from 'react'
 import './SignIn.css'
 import jwt_decode from 'jwt-decode'
 import { Outlet, Link } from "react-router-dom"
+import axios from 'axios'
 
-function handleLoginWup(e) {
+const API = axios.create({ baseURL: 'http://localhost:5000' })
+
+async function handleLoginWup(e) {
     let in1 = document.getElementById('username-signup')
     let in2 = document.getElementById('password-signup')
 
     if (in1.value == "") alert("username is empty !")
     else if (in2.value == "") alert("password is empty !")
     else {
-        
+        let signedInUser = {
+            userName: in1.value,
+            password: in2.value,
+            email: "none"
+        }
+        let resp = await API.post('/user/signin', signedInUser)
+        localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(resp.data["result"]))
+        console.log(resp.data["result"])
     }
 }
 
-function handleCallback(response) {
-    console.log(response)
-    console.log(jwt_decode(response["credential"]))
+async function handleCallbackGoogle(response) {
+    let user = jwt_decode(response["credential"])
+    let signedInUser = {
+        userName: "",
+        password: "",
+        email: user["email"]
+    }
+    let resp = await API.post('/user/signin', signedInUser)
+    console.log(resp.data["result"])
 }
 
 function SignUp({isSignUp, setSignUp}) {
@@ -24,7 +40,7 @@ function SignUp({isSignUp, setSignUp}) {
         /*global google*/ 
         google.accounts.id.initialize({
             client_id: process.env.REACT_APP_CLIENT_ID,
-            callback: handleCallback
+            callback: handleCallbackGoogle
         })
     
         google.accounts.id.renderButton(
