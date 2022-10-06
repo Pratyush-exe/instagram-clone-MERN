@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import './SignIn.css'
 import jwt_decode from 'jwt-decode'
-import { Outlet, Link } from "react-router-dom"
 import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
@@ -18,21 +17,37 @@ async function handleLoginWup(e) {
             password: in2.value,
             email: "none"
         }
-        let resp = await API.post('/user/signin', signedInUser)
-        localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(resp.data["result"]))
-        console.log(resp.data["result"])
+        await API.post('/user/signin', signedInUser)
+            .then(response => {
+                localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
+                console.log(response.data["result"])
+                window.open("/posts", "_self")
+            })
+            .catch(e => {
+                console.log(e.response)
+                alert("Error occured")
+            })
     }
 }
 
 async function handleCallbackGoogle(response) {
     let user = jwt_decode(response["credential"])
+    console.log(user)
     let signedInUser = {
         userName: "",
         password: "",
         email: user["email"]
     }
-    let resp = await API.post('/user/signin', signedInUser)
-    console.log(resp.data["result"])
+    await API.post('/user/signin', signedInUser)
+        .then(response => {
+            localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
+            console.log(response.data["result"])
+            window.open("/posts", "_self")
+        })
+        .catch(e => {
+            console.log(e.response)
+            alert("Error occured")
+        })
 }
 
 function SignUp({isSignUp, setSignUp}) {

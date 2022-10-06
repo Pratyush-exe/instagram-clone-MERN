@@ -5,28 +5,7 @@ import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
 
-async function handleCallback(response) {
-    let in1 = document.getElementById('fullname')
-    let in2 = document.getElementById('username')
-    let in3 = document.getElementById('password')
 
-    if (in1.value === "" || in2.value === "" || in3.value === "") alert("Some fields are empty !")
-    else {
-        let user = jwt_decode(response["credential"])
-        let signedUpUser = {
-            name: in1.value,
-            email: user["email"],
-            userName: in2.value,
-            password: in3.value,
-            defaultPicture: user["picture"],
-            clientId: response["clientId"],
-            followers: [],
-            following: []
-        }
-        await API.post('/user/signup', signedUpUser)
-        alert("Sign In!")
-    }
-}
 
 function SignIn({isSignUp, setSignUp}) {
 
@@ -42,6 +21,29 @@ function SignIn({isSignUp, setSignUp}) {
             {theme: "outline", size: "medium", text: "signup_with", width: "312px"}
         )
     }, [])
+
+    async function handleCallback(response) {
+        let in1 = document.getElementById('fullname')
+        let in2 = document.getElementById('username')
+        let in3 = document.getElementById('password')
+    
+        if (in1.value === "" || in2.value === "" || in3.value === "") alert("Some fields are empty !")
+        else {
+            let user = jwt_decode(response["credential"])
+            let signedUpUser = {
+                name: in1.value,
+                email: user["email"],
+                userName: in2.value,
+                password: in3.value,
+                defaultPicture: user["picture"],
+                clientId: response["clientId"],
+                followers: [],
+                following: []
+            }
+            await API.post('/user/signup', signedUpUser)
+            setSignUp(false)
+        }
+    }
 
     return (
         <div className='creds-form-signup-cont'>
