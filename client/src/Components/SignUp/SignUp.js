@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './SignUp.css'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
 
-
-
 function SignIn({isSignUp, setSignUp}) {
+
+    const [error, seterror] = useState("")
 
     useEffect(() => {
         /*global google*/ 
@@ -27,7 +27,7 @@ function SignIn({isSignUp, setSignUp}) {
         let in2 = document.getElementById('username')
         let in3 = document.getElementById('password')
     
-        if (in1.value === "" || in2.value === "" || in3.value === "") alert("Some fields are empty !")
+        if (in1.value === "" || in2.value === "" || in3.value === "") seterror("Some fields are empty.")
         else {
             let user = jwt_decode(response["credential"])
             let signedUpUser = {
@@ -41,7 +41,13 @@ function SignIn({isSignUp, setSignUp}) {
                 following: []
             }
             await API.post('/user/signup', signedUpUser)
-            setSignUp(false)
+                .then(response => {
+                    setSignUp(false)
+                })
+                .catch(e => {
+                    console.log(e.response["data"])
+                    seterror(e.response["data"])
+                })
         }
     }
 
@@ -56,10 +62,11 @@ function SignIn({isSignUp, setSignUp}) {
                     <input id="password" style={{width: '300px' , height: '30px', marginBottom: '5px', paddingLeft: '5px'}} type={"text"} placeholder='Create password' />
                     <div id='Signup_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
                 </div>
-                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>People who use our service may have uploaded your contact information to Instagram. 
+                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px', paddingBottom: "0px", marginBottom: "0px"}}>People who use our service may have uploaded your contact information to Instagram. 
                     <p style={{fontWeight: 'bold'}}>Learn More</p>
                 </p>
-                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px'}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+                <p style={{textAlign: 'center', fontSize: '12px', padding: '10px', paddingTop: "0px", marginTop: "0px"}}>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+                <div style={{color: "red", width: "250px", textAlign: "center", fontSize: "small"}}>{error}</div>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
                 <p>Have an account?</p><p className='login-bt' onClick={()=>setSignUp(false)}>Log in</p>

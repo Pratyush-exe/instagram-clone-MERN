@@ -1,21 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SignIn.css'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:5000' })
 
-async function handleLoginWup(e) {
-    let in1 = document.getElementById('username-signup')
-    let in2 = document.getElementById('password-signup')
+function SignUp({isSignUp, setSignUp}) {
 
-    if (in1.value == "") alert("username is empty !")
-    else if (in2.value == "") alert("password is empty !")
-    else {
+    const [Error, setError] = useState("")
+
+    async function handleLoginWup(e) {
+        let in1 = document.getElementById('username-signup')
+        let in2 = document.getElementById('password-signup')
+    
+        if (in1.value == "") alert("username is empty !")
+        else if (in2.value == "") alert("password is empty !")
+        else {
+            let signedInUser = {
+                userName: in1.value,
+                password: in2.value,
+                email: "none"
+            }
+            await API.post('/user/signin', signedInUser)
+                .then(response => {
+                    localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
+                    console.log(response.data["result"])
+                    window.open("/posts", "_self")
+                })
+                .catch(e => {
+                    console.log(e.response)
+                    setError(e.response["data"]["result"])
+                })
+        }
+    }
+
+    async function handleCallbackGoogle(response) {
+        let user = jwt_decode(response["credential"])
+        console.log(user)
         let signedInUser = {
-            userName: in1.value,
-            password: in2.value,
-            email: "none"
+            userName: "",
+            password: "",
+            email: user["email"]
         }
         await API.post('/user/signin', signedInUser)
             .then(response => {
@@ -24,33 +49,11 @@ async function handleLoginWup(e) {
                 window.open("/posts", "_self")
             })
             .catch(e => {
-                console.log(e.response)
-                alert("Error occured")
+                // console.log(e.response)
+                setError(e.response["data"]["result"])
             })
     }
-}
 
-async function handleCallbackGoogle(response) {
-    let user = jwt_decode(response["credential"])
-    console.log(user)
-    let signedInUser = {
-        userName: "",
-        password: "",
-        email: user["email"]
-    }
-    await API.post('/user/signin', signedInUser)
-        .then(response => {
-            localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
-            console.log(response.data["result"])
-            window.open("/posts", "_self")
-        })
-        .catch(e => {
-            console.log(e.response)
-            alert("Error occured")
-        })
-}
-
-function SignUp({isSignUp, setSignUp}) {
     useEffect(() => {
         /*global google*/ 
         google.accounts.id.initialize({
@@ -79,6 +82,7 @@ function SignUp({isSignUp, setSignUp}) {
                 </div>
                 <div id='Signin_button' style={{ width: '310px', height: '30px', marginBottom: '5px', display: 'flex', justifyContent: 'center'}}></div>
             </div>
+            <div style={{color: "red", width: "250px", marginTop: "20px", textAlign: "center", fontSize: "small"}}>{Error}</div>
             <p id="forgot">Forgot password?</p>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', border: '1px solid lightgray', justifyContent: 'center'}}>
