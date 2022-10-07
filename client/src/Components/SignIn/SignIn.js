@@ -23,7 +23,14 @@ function SignUp({isSignUp, setSignUp}) {
             }
             await API.post('/user/signin', signedInUser)
                 .then(response => {
-                    localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
+                    localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(
+                        {
+                            userName : response.data["result"]["userName"],
+                            clientId : response.data["result"]["clientId"],
+                            email : response.data["result"]["email"],
+                            defaultPicture : response.data["defaultPicture"]
+                        }
+                    ))
                     console.log(response.data["result"])
                     window.open("/posts", "_self")
                 })
@@ -44,12 +51,18 @@ function SignUp({isSignUp, setSignUp}) {
         }
         await API.post('/user/signin', signedInUser)
             .then(response => {
-                localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(response.data["result"]))
+                localStorage.setItem("INSTAGRAM-CURRENT-USER", JSON.stringify(
+                    {
+                        userName : response.data["result"]["userName"],
+                        clientId : response.data["result"]["clientId"],
+                        email : response.data["result"]["email"],
+                        defaultPicture : response.data["defaultPicture"]
+                    }
+                ))
                 console.log(response.data["result"])
                 window.open("/posts", "_self")
             })
             .catch(e => {
-                // console.log(e.response)
                 setError(e.response["data"]["result"])
             })
     }

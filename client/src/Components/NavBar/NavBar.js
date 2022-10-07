@@ -16,6 +16,10 @@ function NavBar() {
                 <div className='nav-icons' onClick={() => setCreatePost(true)}><AddOutline  /></div>
                 <div className='nav-icons'><CompassOutline  /></div>
                 <div className='nav-icons'><LoveOutline  /></div>
+                <button onClick={()=>{
+                    localStorage.removeItem("INSTAGRAM-CURRENT-USER")
+                    window.open("/", "_self")
+                }}>LOGOUT</button>
             </div>
             <CreatePost trigger={createPost} setTrigger={setCreatePost}/>
         </div>
