@@ -13,19 +13,15 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const post = req.body;
-    const newPost = new PostModel({...post, 
-        id: req.userId, 
-        createdAt: new Date().toISOString()
-    })
 
     try {
-        await newPost.save();
+        const newPost = await PostModel.create({
+            ...post, 
+            id: req.userId, 
+            createdAt: new Date().toISOString()
+        })
         res.status(201).json(newPost);
     } catch (error) {
         res.status(409).json({message: error.message})
     }
-}
-
-export const getUser = async (req, res) => {
-    
 }

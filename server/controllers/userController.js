@@ -46,3 +46,9 @@ export const signUpUser = async (req, res) => {
         return res.status(500).json('Server error. Please try again later.')
     }
 }
+
+export const getUser = async (req, res) => {
+    const {userName} = req.body
+    const existingUser = await UserModel.findOne({userName});
+    return res.status(200).json({result: existingUser})
+}

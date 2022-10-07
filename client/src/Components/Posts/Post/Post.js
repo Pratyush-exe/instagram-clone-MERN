@@ -1,16 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import './Post.css'
+import axios from 'axios'
 import { LoveOutline, LoveFilled, Comment, Share, SaveFilled, SaveOutline, ThreeDots } from '../../../images/svg'
+
+const API = axios.create({ baseURL: 'http://localhost:5000' })
+
 
 function Post({PostData}) {
 
   const [IsClick, setIsClick] = useState(false)
+  const [image, setImage] = useState("")
+
+  useEffect(() => {
+    const getDP = async () => {
+      await API.post('/user/getUser', {userName: PostData["creator"]})
+      .then(response => {
+        console.log("this is user1", response.data["result"])
+        let user = response.data["result"]
+        axios.get(user["defaultPicture"], {responseType: "arraybuffer"}).then((res) => {
+          const base64 = btoa(
+              new Uint8Array(res.data).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  ''
+              )
+          )
+          setImage(base64)
+        })
+      })
+    }
+    getDP()
+  }, [])
 
   return (
     <div className='post-main-component' >
       <div className='post-header'>
         <div className='post-user-details'>
-          <div className='post-user-image'></div>
+          <img className='post-user-image' src={`data:image/jpeg;charset=utf-8;base64,${image}`} />
           <div className='post-user-loc-name'>
             <p className='post-user'>{PostData["creator"]}</p>
             <p className='post-user'>{PostData["location"]}</p>

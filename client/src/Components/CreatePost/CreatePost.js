@@ -13,15 +13,21 @@ const API = axios.create({ baseURL: 'http://localhost:5000' })
 function CreatePost({trigger, setTrigger}) {
     const [page, setPage] = useState(0)
     const [postData, setPostData] = useState({
-        creator: "", location: "", selectedFile: [], caption: "",
-        tags: [], createAt: "", comments: [], likes: []
+        creator: JSON.parse(localStorage.getItem("INSTAGRAM-CURRENT-USER"))["userName"], 
+        location: "",
+        selectedFile: [], 
+        caption: "",
+        tags: [], 
+        createAt: "", 
+        comments: [], 
+        likes: []
     })
     const titles = ["Create new post", "Crop", "Edit", "Create new post", "Sharing", 'Post shared']
 
     async function handleSubmit(e) {
         setPage(4)
         await API.post('/posts' , postData)
-        console.log("came here")
+        console.log(postData)
         setPage(5)
     }
 

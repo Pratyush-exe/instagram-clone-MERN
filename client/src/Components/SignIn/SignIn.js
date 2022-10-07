@@ -28,7 +28,7 @@ function SignUp({isSignUp, setSignUp}) {
                             userName : response.data["result"]["userName"],
                             clientId : response.data["result"]["clientId"],
                             email : response.data["result"]["email"],
-                            defaultPicture : response.data["defaultPicture"]
+                            defaultPicture : response.data["result"]["defaultPicture"]
                         }
                     ))
                     console.log(response.data["result"])
@@ -56,7 +56,7 @@ function SignUp({isSignUp, setSignUp}) {
                         userName : response.data["result"]["userName"],
                         clientId : response.data["result"]["clientId"],
                         email : response.data["result"]["email"],
-                        defaultPicture : response.data["defaultPicture"]
+                        defaultPicture : response.data["result"]["defaultPicture"]
                     }
                 ))
                 console.log(response.data["result"])
