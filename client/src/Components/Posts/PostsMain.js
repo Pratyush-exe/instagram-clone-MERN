@@ -15,8 +15,7 @@ function PostsMain() {
       const getPost = async () => {
         const user = await API.get('/posts')
         setData(user.data.reverse())
-      }
-  
+      } 
       getPost()
     }, [])
 
