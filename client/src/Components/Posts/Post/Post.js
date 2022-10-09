@@ -18,7 +18,6 @@ function Post({PostData}) {
     const getDP = async () => {
       await API.post('/user/getUser', {userName: PostData["creator"]})
       .then(response => {
-        console.log("this is user1", response.data["result"])
         let user = response.data["result"]
         axios.get(user["defaultPicture"], {responseType: "arraybuffer"}).then((res) => {
           const base64 = btoa(
@@ -42,7 +41,6 @@ function Post({PostData}) {
       dislike: !IsClick
     }).then(response => {
       setLikes(response.data["result"]["likes"])
-      console.log("returned:", response.data["result"]["likes"])
       setIsClick(!IsClick)
     })
   }
