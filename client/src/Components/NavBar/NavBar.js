@@ -7,10 +7,12 @@ import axios from 'axios'
 function NavBar() {
     const [createPost, setCreatePost] = useState(false)
     const [image, setImage] = useState("")
+    const [dropdown, setDropdown] = useState(false)
 
     let userImage = JSON.parse(localStorage.getItem("INSTAGRAM-CURRENT-USER"))["defaultPicture"]
     axios.get(userImage, {
-        responseType: "arraybuffer"
+        responseType: "arraybuffer",
+        withCredentials: false
         })
         .then((res) => {
         const base64 = btoa(
@@ -33,13 +35,25 @@ function NavBar() {
                 <div className='nav-icons' onClick={() => setCreatePost(true)}><AddOutline  /></div>
                 <div className='nav-icons'><CompassOutline  /></div>
                 <div className='nav-icons'><LoveOutline  /></div>
-                <button onClick={()=>{
-                    localStorage.removeItem("INSTAGRAM-CURRENT-USER")
-                    window.open("/", "_self")
-                }}>LOGOUT</button>
-                <img style={{width: "30px", height: "30px", borderRadius: "50%", border: "none"}} 
+                <img 
+                    id="current-user-profile"
+                    style={{width: "30px", height: "30px", borderRadius: "50%", border: "none", cursor: "pointer"}} 
                     src={`data:image/jpeg;charset=utf-8;base64,${image}`}
+                    onClick={()=>setDropdown(!dropdown)}
                 />
+                {dropdown && <div id="user-profile-dropdown">
+                    <div className='dropdown-profile-elements'>Profile</div>
+                    <div className='dropdown-profile-elements'>Saved</div>
+                    <div className='dropdown-profile-elements'>Settings</div>
+                    <div className='dropdown-profile-elements'>Report a problem</div>
+                    <div className='dropdown-profile-elements'>Switch accounts</div>
+                    <div className='dropdown-profile-elements'
+                        onClick={()=>{
+                            localStorage.removeItem("INSTAGRAM-CURRENT-USER")
+                            window.open("/", "_self")
+                        }}>Logout
+                    </div>
+                </div>}
             </div>
             <CreatePost trigger={createPost} setTrigger={setCreatePost}/>
         </div>

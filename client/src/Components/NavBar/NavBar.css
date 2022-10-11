@@ -11,7 +11,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    min-width: 800px;
+    min-width: 1000px;
+    position: relative;
 }
 
 .nav-icons {
@@ -24,4 +25,25 @@
 .navbar-options {
     display: flex;
     flex-direction: row;
+}
+
+#user-profile-dropdown {
+    position: absolute;
+    width: 160px;
+    height: auto;
+    z-index: 10;
+    right: -10px;
+    top: 58px;
+    background-color: white;
+    box-shadow: grey 0px 1px 10px;
+    border-radius: 10px;
+}
+
+.dropdown-profile-elements {
+    padding: 10px;
+}
+
+.dropdown-profile-elements:hover {
+    background-color: rgb(237, 237, 237);
+    cursor: pointer;
 }

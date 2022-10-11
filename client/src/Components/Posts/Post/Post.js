@@ -7,7 +7,7 @@ const API = axios.create({ baseURL: 'http://localhost:5000' })
 
 
 function Post({PostData}) {
-  console.log(PostData)
+  // console.log(PostData)
   let currentUser = JSON.parse(localStorage.getItem("INSTAGRAM-CURRENT-USER"))
 
   const [IsClick, setIsClick] = useState(PostData["likes"].includes(currentUser["userName"]))
@@ -19,7 +19,8 @@ function Post({PostData}) {
       await API.post('/user/getUser', {userName: PostData["creator"]})
       .then(response => {
         let user = response.data["result"]
-        axios.get(user["defaultPicture"], {responseType: "arraybuffer"}).then((res) => {
+        axios.get(user["defaultPicture"], {responseType: "arraybuffer", withCredentials: false})
+        .then((res) => {
           const base64 = btoa(
               new Uint8Array(res.data).reduce(
                   (data, byte) => data + String.fromCharCode(byte),  ''
